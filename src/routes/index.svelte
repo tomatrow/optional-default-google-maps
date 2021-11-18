@@ -1,26 +1,29 @@
 <script lang="ts">
     import { Map, Marker, PlacesAutocomplete } from "$lib"
     import { minimalBounds } from "./_utility/minimalBounds"
-    
+
     let coords = {
-        "one": { lat: 33.12736343851687, lng: -115.2786826846543 },
-        "two": { lat: 33.12736343851687, lng: -116.2786826846543 },
-        "three": { lat: 33.12736343851687, lng: -117.2786826846543 }
+        one: { lat: 33.12736343851687, lng: -115.2786826846543 },
+        two: { lat: 33.12736343851687, lng: -116.2786826846543 },
+        three: { lat: 33.12736343851687, lng: -117.2786826846543 }
     }
 
     let map: google.maps.Map
     let maps: typeof google.maps
     let place: google.maps.places.PlaceResult
-    
+
     async function remove({ detail }) {
         delete coords[detail.id]
         coords = coords
     }
 
-    function getLiterals(coords: Record<string, google.maps.LatLngLiteral>, place: google.maps.places.PlaceResult) {
+    function getLiterals(
+        coords: Record<string, google.maps.LatLngLiteral>,
+        place: google.maps.places.PlaceResult
+    ) {
         return Object.values(coords).concat(place?.geometry.location.toJSON()).filter(Boolean)
     }
-    
+
     $: bounds = maps && minimalBounds(maps, getLiterals(coords, place))
     $: bounds && map?.fitBounds(bounds)
 </script>
@@ -30,10 +33,10 @@
         fields: ["geometry", "formatted_address"],
         types: ["(regions)"]
     }}
-    on:placeChanged={({ detail }) => (place = detail.place)} 
+    on:placeChanged={({ detail }) => (place = detail.place)}
 />
 
-<Map 
+<Map
     class="map"
     bind:maps
     bind:map
@@ -46,7 +49,7 @@
         <Marker
             id="place"
             options={{
-                position:  place.geometry.location.toJSON(),
+                position: place.geometry.location.toJSON(),
                 cursor: "pointer"
             }}
             on:click={() => (place = null)}
@@ -57,7 +60,7 @@
             id={slug}
             options={{
                 position: coords[slug],
-                cursor: "pointer",
+                cursor: "pointer"
             }}
             on:click={remove}
         />

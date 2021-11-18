@@ -46,14 +46,14 @@
             viewValue = String(place[viewLabel])
             value = viewValue
             currentPlace = place
-            dispatch("placeChanged", { 
-                place, 
-                selectedPrediction: search.value 
+            dispatch("placeChanged", {
+                place,
+                selectedPrediction: search.value
             })
         })
 
         dispatch("ready")
-        
+
         return remove
     })
 </script>
