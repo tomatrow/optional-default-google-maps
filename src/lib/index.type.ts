@@ -7,7 +7,8 @@ export interface AutocompleteResult {
 }
 
 export interface MapContext {
-    map: Writable<google.maps.Map|null>
-    clusterer: Writable<MarkerClusterer|null>
-    maps: Writable<typeof google.maps|null>
+    map: Writable<google.maps.Map | null>
+    clusterer: Writable<MarkerClusterer | null>
+    maps: Writable<typeof google.maps | null>
+    marker: Writable<google.maps.Marker | null>
 }

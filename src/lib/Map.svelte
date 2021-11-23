@@ -15,7 +15,8 @@
     const context: MapContext = {
         maps: writable(null),
         map: writable(null),
-        clusterer: writable(null)
+        clusterer: writable(null),
+        marker: writable(null)
     }
 
     setContext(key, context)

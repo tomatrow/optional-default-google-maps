@@ -6,19 +6,18 @@
     import type { MarkerClustererOptions } from "@googlemaps/markerclusterer"
     import { writable } from "svelte/store"
 
-    export let algorithm: MarkerClustererOptions["algorithm"] = undefined
-    export let renderer: MarkerClustererOptions["renderer"] = undefined
     const dispatch = createEventDispatcher()
-
-    const { map, ...rest } = getContext(key)
-    
+    const context = getContext(key)
+    const { map } = context
     const clusterer = writable<MarkerClusterer|null>(null)
 
     setContext(key, {
-        ...rest,
-        map,
+        ...context,
         clusterer 
     })
+
+    export let algorithm: MarkerClustererOptions["algorithm"] = undefined
+    export let renderer: MarkerClustererOptions["renderer"] = undefined
 
     onMount(() => {
         $clusterer = new MarkerClusterer({
@@ -29,11 +28,8 @@
             algorithm,
             renderer
         })
-        
         return () => $clusterer.clearMarkers()
     })
 </script>
 
-{#if $clusterer}
-    <slot />
-{/if}
+<slot />

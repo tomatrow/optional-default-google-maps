@@ -1,11 +1,11 @@
 <script lang="ts">
     import { Map, Marker, PlacesAutocomplete, Clusterer, InfoWindow } from "$lib"
     import { minimalBounds } from "./_utility/minimalBounds"
-
+    
     let coords = {
-        one: { lat: 33.12736343851687, lng: -115.2786826846543 },
+        one: { lat: 33.12736343851687, lng: -110.2786826846543 },
         two: { lat: 33.12736343851687, lng: -116.2786826846543 },
-        three: { lat: 33.12736343851687, lng: -117.2786826846543 }
+        three: { lat: 33.12736343851687, lng: -125.2786826846543 }
     }
 
     let map: google.maps.Map
@@ -41,6 +41,7 @@
     bind:maps
     bind:map
     options={{
+        zoom: 5,
         zoomControl: true,
         center: coords["two"]
     }}
@@ -53,9 +54,7 @@
                     cursor: "pointer"
                 }}
                 on:click={() => (place = null)}
-            >
-
-            </Marker>
+            />
         {/if}
         {#each Object.keys(coords) as slug (slug)}
             <Marker
@@ -63,10 +62,9 @@
                     position: coords[slug],
                     cursor: "pointer"
                 }}
-                let:marker
                 on:click={() => remove(slug)}
             >
-                <InfoWindow {marker} id={slug}>
+                <InfoWindow>
                     Hello {slug}
                 </InfoWindow>
             </Marker>
