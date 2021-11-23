@@ -1,10 +1,5 @@
-<script lang="ts" context="module">
-    import { writable } from "svelte/store"
-    export const isMapsLoaded = writable(false)
-    export const isMapsLoading = writable(false)
-</script>
-
 <script lang="ts">
+    import { isMapsLoading, isMapsLoaded } from "./common"
     import { Loader } from "@googlemaps/js-api-loader/dist/index.esm"
     import type { LoaderOptions } from "@googlemaps/js-api-loader"
     import { onMount, createEventDispatcher } from "svelte"

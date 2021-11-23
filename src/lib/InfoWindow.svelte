@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {  onMount, createEventDispatcher } from "svelte"
+    import { onMount, createEventDispatcher } from "svelte"
     import { getContext } from "svelte-typed-context"
     import { key } from "./common"
 
@@ -7,31 +7,33 @@
     const { maps, map, marker } = getContext(key)
 
     export let options: google.maps.InfoWindowOptions = {}
-    export let infoWindow: google.maps.InfoWindow = undefined
+    
+    export const infoWindow = new $maps.InfoWindow(options)
 
     let content: HTMLElement
 
-    onMount(async () => {
-        infoWindow = new $maps.InfoWindow({
-            content,
-            ...options
-        })
+    onMount(() => {
         const closeListener = $maps.event.addListener(infoWindow, "closeclick", () => {
             dispatch("closeclick", { infoWindow })
         })
         infoWindow.open($map, $marker)
-        
+
         return () => {
             closeListener.remove()
-            infoWindow?.close()
+            infoWindow.setContent(null)
+            infoWindow.close()
         }
     })
+    
+    $: if (content) {
+        infoWindow.setContent(content)
+    }
 </script>
 
 {#if $$slots.default && $marker}
     <div>
         <div bind:this={content} {...$$restProps}>
-            <slot {infoWindow} />
+            <slot />
         </div>
     </div>
 {/if}

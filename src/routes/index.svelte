@@ -11,10 +11,14 @@
     let map: google.maps.Map
     let maps: typeof google.maps
     let place: google.maps.places.PlaceResult
+    let selected: string
 
-    async function remove(id: string) {
-        delete coords[id]
-        coords = coords
+
+    function deselect() {
+        selected = null
+    }
+    function select(id: string) {
+        selected = id
     }
 
     function getLiterals(
@@ -62,11 +66,13 @@
                     position: coords[slug],
                     cursor: "pointer"
                 }}
-                on:click={() => remove(slug)}
+                on:click={() => select(slug)}
             >
-                <InfoWindow>
-                    Hello {slug}
-                </InfoWindow>
+                {#if selected === slug}
+                    <InfoWindow>
+                        Hello {slug}
+                    </InfoWindow>
+                {/if}
             </Marker>
         {/each}
     </Clusterer>
