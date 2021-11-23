@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Map, Marker, PlacesAutocomplete } from "$lib"
+    import { Map, Marker, PlacesAutocomplete, Clusterer, InfoWindow } from "$lib"
     import { minimalBounds } from "./_utility/minimalBounds"
 
     let coords = {
@@ -12,8 +12,8 @@
     let maps: typeof google.maps
     let place: google.maps.places.PlaceResult
 
-    async function remove({ detail }) {
-        delete coords[detail.id]
+    async function remove(id: string) {
+        delete coords[id]
         coords = coords
     }
 
@@ -25,7 +25,7 @@
     }
 
     $: bounds = maps && minimalBounds(maps, getLiterals(coords, place))
-    $: bounds && map?.fitBounds(bounds)
+    $: bounds && !map?.getBounds()?.equals(bounds) && map?.fitBounds(bounds)
 </script>
 
 <PlacesAutocomplete
@@ -40,31 +40,38 @@
     class="map"
     bind:maps
     bind:map
-    mapOptions={{
+    options={{
         zoomControl: true,
         center: coords["two"]
     }}
 >
-    {#if place?.geometry?.location}
-        <Marker
-            id="place"
-            options={{
-                position: place.geometry.location.toJSON(),
-                cursor: "pointer"
-            }}
-            on:click={() => (place = null)}
-        />
-    {/if}
-    {#each Object.keys(coords) as slug (slug)}
-        <Marker
-            id={slug}
-            options={{
-                position: coords[slug],
-                cursor: "pointer"
-            }}
-            on:click={remove}
-        />
-    {/each}
+    <Clusterer>
+        {#if place?.geometry?.location}
+            <Marker
+                options={{
+                    position: place.geometry.location.toJSON(),
+                    cursor: "pointer"
+                }}
+                on:click={() => (place = null)}
+            >
+
+            </Marker>
+        {/if}
+        {#each Object.keys(coords) as slug (slug)}
+            <Marker
+                options={{
+                    position: coords[slug],
+                    cursor: "pointer"
+                }}
+                let:marker
+                on:click={() => remove(slug)}
+            >
+                <InfoWindow {marker} id={slug}>
+                    Hello {slug}
+                </InfoWindow>
+            </Marker>
+        {/each}
+    </Clusterer>
 </Map>
 
 <style>

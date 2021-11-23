@@ -1,20 +1,16 @@
 <script lang="ts">
-    import { getContext } from "./Map.svelte"
-    import { onMount } from "svelte"
+    import { onMount, getContext } from "svelte"
+    import { key } from "./common"
 
-    const { map, maps } = getContext().getAll()
+    const { map, maps } = getContext(key)
 
     export let options: google.maps.CircleOptions = {}
 
     onMount(() => {
-        try {
-            const circle = new maps.Circle({
-                ...options,
-                map
-            })
-            return () => circle.setMap(null)
-        } catch (error) {
-            console.error(error)
-        }
+        const circle = new $maps.Circle({
+            ...options,
+            map: $map
+        })
+        return () => circle.setMap(null)
     })
 </script>
