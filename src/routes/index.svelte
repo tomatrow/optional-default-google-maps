@@ -13,10 +13,6 @@
     let place: google.maps.places.PlaceResult
     let selected: string
 
-
-    function deselect() {
-        selected = null
-    }
     function select(id: string) {
         selected = id
     }
@@ -37,7 +33,7 @@
         fields: ["geometry", "formatted_address"],
         types: ["(regions)"]
     }}
-    on:placeChanged={({ detail }) => (place = detail.place)}
+    on:placeChanged={event => (place = event.detail.place)}
 />
 
 <Map
@@ -50,16 +46,16 @@
         center: coords["two"]
     }}
 >
+    {#if place?.geometry?.location}
+        <Marker
+            options={{
+                position: place.geometry.location.toJSON(),
+                cursor: "pointer"
+            }}
+            on:click={() => (place = null)}
+        />
+    {/if}
     <Clusterer>
-        {#if place?.geometry?.location}
-            <Marker
-                options={{
-                    position: place.geometry.location.toJSON(),
-                    cursor: "pointer"
-                }}
-                on:click={() => (place = null)}
-            />
-        {/if}
         {#each Object.keys(coords) as slug (slug)}
             <Marker
                 options={{
