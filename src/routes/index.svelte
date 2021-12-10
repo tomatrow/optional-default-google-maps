@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Map, Marker, PlacesAutocomplete, Clusterer, InfoWindow } from "$lib"
+    import { Map, Marker, PlacesAutocomplete, Clusterer, InfoWindow, Circle } from "$lib"
     import { minimalBounds } from "./_utility/minimalBounds"
     
     let coords = {
@@ -53,6 +53,17 @@
                 cursor: "pointer"
             }}
             on:click={() => (place = null)}
+        />
+     <Circle
+            options={{
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillOpacity: 0.35,
+                center: place.geometry.location,
+                radius: 5000,
+                fillColor: "#FF0000",
+                strokeColor: "#FF0000",
+            }}
         />
     {/if}
     <Clusterer>

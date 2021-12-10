@@ -18,7 +18,6 @@
     })
 
     onMount(() => {
-        $clusterer?.addMarker(marker)
         const clickListener = $maps.event.addListener(marker, "click", () =>
             dispatch("click", { marker })
         )
@@ -29,6 +28,10 @@
             clickListener.remove()
         }
     })
+    
+    $: if ($clusterer) {
+        $clusterer.addMarker(marker)
+    }
 </script>
 
 <slot />
