@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount, createEventDispatcher } from "svelte"
-    import { getContext } from "svelte-typed-context"
+    import { getContext } from "optional-default-site-kit/utility"
     import { key } from "./common"
 
     const dispatch = createEventDispatcher()

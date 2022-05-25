@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { getContext, setContext } from "svelte-typed-context"
+    import { getContext, setContext } from "optional-default-site-kit/utility"
     import { key } from "./common"
     import { onMount, createEventDispatcher } from "svelte"
     import { MarkerClusterer } from "@googlemaps/markerclusterer"

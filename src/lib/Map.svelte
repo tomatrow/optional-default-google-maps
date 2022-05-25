@@ -2,7 +2,7 @@
     import { onMount } from "svelte"
     import { writable } from "svelte/store"
     import { key } from "./common"
-    import { setContext } from "svelte-typed-context"
+    import { setContext } from "optional-default-site-kit/utility"
     import type { MapContext } from "./index.type"
 
     export let container: HTMLElement = undefined
