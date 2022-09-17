@@ -18,14 +18,16 @@ specifiers:
   typescript: ^4.8.3
   vite: ^3.1.2
 
-devDependencies:
+dependencies:
   '@googlemaps/js-api-loader': 1.14.3
   '@googlemaps/markerclusterer': 2.0.11
+  optional-default-site-kit: 0.3.6
+
+devDependencies:
   '@sveltejs/adapter-auto': 1.0.0-next.75
   '@sveltejs/kit': 1.0.0-next.484_svelte@3.50.1+vite@3.1.2
   '@sveltejs/package': 1.0.0-next.3_iprco5tylfmvffqgrvqxc46njy
   '@types/google.maps': 3.50.1
-  optional-default-site-kit: 0.3.6
   prettier: 2.7.1
   prettier-plugin-svelte: 2.7.0_nk6d2fkgcllkkdynqbuearcure
   svelte: 3.50.1
@@ -71,14 +73,14 @@ packages:
     resolution: {integrity: sha512-6iIb+qpGgQpgIHmIFO44WhE1rDUxPVHuezNFL30wRJnkvhwFm94tD291UvNg9L05hLDSoL16jd0lbqqmdy4C5g==}
     dependencies:
       fast-deep-equal: 3.1.3
-    dev: true
+    dev: false
 
   /@googlemaps/markerclusterer/2.0.11:
     resolution: {integrity: sha512-/Rhqqq12vGwg+EuzaQtzjqrF5CFiGlJpPlC+bjVH/WYbZ4gPGARuEzWqRhY8m1u2cZDHF0yZrJKPOuYzc+2PcA==}
     dependencies:
       fast-deep-equal: 3.1.3
       supercluster: 7.1.5
-    dev: true
+    dev: false
 
   /@iarna/toml/2.2.5:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
@@ -700,7 +702,7 @@ packages:
 
   /fast-deep-equal/3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
-    dev: true
+    dev: false
 
   /fast-glob/3.2.11:
     resolution: {integrity: sha512-xrO3+1bxSo3ZVHAnqzyuewYT6aMFHRAd4Kcs92MAonjwQZLsK9d0SF1IyQ3k5PoirxTW0Oe/RqFgMQ6TcNE5Ew==}
@@ -894,7 +896,7 @@ packages:
 
   /kdbush/3.0.0:
     resolution: {integrity: sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew==}
-    dev: true
+    dev: false
 
   /kleur/4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
@@ -1093,7 +1095,7 @@ packages:
 
   /optional-default-site-kit/0.3.6:
     resolution: {integrity: sha512-2TcEyLyNgnADafqIJJLPpE/CSLSnUW5rqjH4NvaGDOJFDKd1qGLTpobEl7qL33vKKge8fUJNqp1oir+10W1CCA==}
-    dev: true
+    dev: false
 
   /parent-module/1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -1341,7 +1343,7 @@ packages:
     resolution: {integrity: sha512-EulshI3pGUM66o6ZdH3ReiFcvHpM3vAigyK+vcxdjpJyEbIIrtbmBdY23mGgnI24uXiGFvrGq9Gkum/8U7vJWg==}
     dependencies:
       kdbush: 3.0.0
-    dev: true
+    dev: false
 
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}

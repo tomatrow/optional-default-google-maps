@@ -12,13 +12,10 @@
 		"publish": "pnpm run lint && pnpm run build && pnpm publish ./package"
 	},
 	"devDependencies": {
-		"@googlemaps/js-api-loader": "^1.14.3",
-		"@googlemaps/markerclusterer": "^2.0.11",
 		"@sveltejs/adapter-auto": "1.0.0-next.75",
 		"@sveltejs/kit": "1.0.0-next.484",
 		"@sveltejs/package": "1.0.0-next.3",
 		"@types/google.maps": "^3.50.1",
-		"optional-default-site-kit": "^0.3.6",
 		"prettier": "^2.7.1",
 		"prettier-plugin-svelte": "^2.7.0",
 		"svelte": "^3.50.1",
@@ -31,5 +28,10 @@
 	},
 	"type": "module",
 	"homepage": "https://github.com/tomatrow/optional-default-google-maps#readme",
-	"author": "AJ Caldwell <tomatrow@gmail.com>"
+	"author": "AJ Caldwell <tomatrow@gmail.com>",
+	"dependencies": {
+		"@googlemaps/js-api-loader": "^1.14.3",
+		"@googlemaps/markerclusterer": "^2.0.11",
+		"optional-default-site-kit": "^0.3.6"
+	}
 }
