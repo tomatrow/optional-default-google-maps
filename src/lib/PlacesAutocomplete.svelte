@@ -1,22 +1,22 @@
 <script lang="ts">
     import { createEventDispatcher, onMount } from "svelte"
 
-    export let value: string = null
-    export let viewValue: string = null
+    export let value: string | undefined = undefined
+    export let viewValue: string | undefined = undefined
     export let viewLabel: keyof google.maps.places.PlaceResult = "formatted_address"
-    export let options: google.maps.places.AutocompleteOptions = undefined
+    export let options: google.maps.places.AutocompleteOptions | undefined
 
     let search: HTMLInputElement
     let autocomplete: google.maps.places.Autocomplete
-    let currentPlace: google.maps.places.PlaceResult
+    let currentPlace: google.maps.places.PlaceResult | undefined
     let disabled = true
 
     const dispatch = createEventDispatcher()
 
     function clear() {
-        value = null
-        viewValue = null
-        currentPlace = null
+        value = undefined
+        viewValue = undefined
+        currentPlace = undefined
         dispatch("clear")
     }
 
@@ -30,7 +30,6 @@
     }
 
     function blur() {
-        dispatch("blur")
         if (viewValue !== currentPlace) clear()
     }
 
@@ -64,6 +63,7 @@
     bind:this={search}
     bind:value={viewValue}
     on:blur={blur}
+	on:blur
     on:keydown={autocompleteKeydown}
     {...$$restProps}
 />

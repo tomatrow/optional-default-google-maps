@@ -5,7 +5,7 @@
     import { writable } from "svelte/store"
 
     const dispatch = createEventDispatcher()
-    const context = getContext(key)
+    const context = getContext(key)!
     const { map, maps, clusterer } = context
 
     export let options: google.maps.MarkerOptions = {}

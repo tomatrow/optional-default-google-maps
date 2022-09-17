@@ -1,8 +1,8 @@
 <script lang="ts">
     import { Map, Marker, PlacesAutocomplete, Clusterer, InfoWindow, Circle } from "$lib"
-    import { minimalBounds } from "./_utility/minimalBounds"
+    import { minimalBounds } from "./utility/minimalBounds"
     
-    let coords = {
+    const coords: Record<string, google.maps.LatLngLiteral> = {
         one: { lat: 33.12736343851687, lng: -110.2786826846543 },
         two: { lat: 33.12736343851687, lng: -116.2786826846543 },
         three: { lat: 33.12736343851687, lng: -125.2786826846543 }
@@ -10,7 +10,7 @@
 
     let map: google.maps.Map
     let maps: typeof google.maps
-    let place: google.maps.places.PlaceResult
+    let place: google.maps.places.PlaceResult|undefined
     let selected: string
 
     function select(id: string) {
@@ -19,9 +19,12 @@
 
     function getLiterals(
         coords: Record<string, google.maps.LatLngLiteral>,
-        place: google.maps.places.PlaceResult
+        place?: google.maps.places.PlaceResult
     ) {
-        return Object.values(coords).concat(place?.geometry.location.toJSON()).filter(Boolean)
+		return [
+			...Object.values(coords),
+			place?.geometry?.location?.toJSON()
+		].filter(Boolean) as google.maps.LatLngLiteral[]
     }
 
     $: bounds = maps && minimalBounds(maps, getLiterals(coords, place))
@@ -29,11 +32,11 @@
 </script>
 
 <PlacesAutocomplete
+    on:placeChanged={event => (place = event.detail.place)}
     options={{
         fields: ["geometry", "formatted_address"],
         types: ["(regions)"]
     }}
-    on:placeChanged={event => (place = event.detail.place)}
 />
 
 <Map
@@ -52,7 +55,7 @@
                 position: place.geometry.location.toJSON(),
                 cursor: "pointer"
             }}
-            on:click={() => (place = null)}
+            on:click={() => (place = undefined)}
         />
      <Circle
             options={{
@@ -66,14 +69,14 @@
             }}
         />
     {/if}
-    <Clusterer>
+    <Clusterer on:click={event => bounds = event.detail.cluster.bounds}>
         {#each Object.keys(coords) as slug (slug)}
             <Marker
+                on:click={() => select(slug)}
                 options={{
                     position: coords[slug],
                     cursor: "pointer"
                 }}
-                on:click={() => select(slug)}
             >
                 {#if selected === slug}
                     <InfoWindow>

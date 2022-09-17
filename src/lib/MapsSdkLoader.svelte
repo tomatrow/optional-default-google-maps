@@ -1,6 +1,6 @@
 <script lang="ts">
     import { isMapsLoading, isMapsLoaded } from "./common"
-    import { Loader } from "@googlemaps/js-api-loader/dist/index.esm"
+    import { Loader } from "@googlemaps/js-api-loader"
     import type { LoaderOptions } from "@googlemaps/js-api-loader"
     import { onMount, createEventDispatcher } from "svelte"
 

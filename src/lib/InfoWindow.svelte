@@ -4,7 +4,7 @@
     import { key } from "./common"
 
     const dispatch = createEventDispatcher()
-    const { maps, map, marker } = getContext(key)
+    const { maps, map, marker } = getContext(key)!
 
     export let options: google.maps.InfoWindowOptions = {}
     

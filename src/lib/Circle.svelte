@@ -1,8 +1,9 @@
 <script lang="ts">
-    import { onMount, getContext } from "svelte"
+    import { onMount } from "svelte"
     import { key } from "./common"
+	import { getContext } from "optional-default-site-kit/utility"
 
-    const { map, maps } = getContext(key)
+    const { map, maps } = getContext(key)!
 
     export let options: google.maps.CircleOptions = {}
 
