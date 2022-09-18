@@ -32,6 +32,6 @@
 	"dependencies": {
 		"@googlemaps/js-api-loader": "^1.14.3",
 		"@googlemaps/markerclusterer": "^2.0.11",
-		"optional-default-site-kit": "^0.3.6"
+		"optional-default-site-kit": "^0.3.7"
 	}
 }

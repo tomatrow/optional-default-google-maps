@@ -7,7 +7,7 @@ specifiers:
   '@sveltejs/kit': 1.0.0-next.484
   '@sveltejs/package': 1.0.0-next.3
   '@types/google.maps': ^3.50.1
-  optional-default-site-kit: ^0.3.6
+  optional-default-site-kit: ^0.3.7
   prettier: ^2.7.1
   prettier-plugin-svelte: ^2.7.0
   svelte: ^3.50.1
@@ -21,7 +21,7 @@ specifiers:
 dependencies:
   '@googlemaps/js-api-loader': 1.14.3
   '@googlemaps/markerclusterer': 2.0.11
-  optional-default-site-kit: 0.3.6
+  optional-default-site-kit: 0.3.7
 
 devDependencies:
   '@sveltejs/adapter-auto': 1.0.0-next.75
@@ -1093,8 +1093,8 @@ packages:
       wrappy: 1.0.2
     dev: true
 
-  /optional-default-site-kit/0.3.6:
-    resolution: {integrity: sha512-2TcEyLyNgnADafqIJJLPpE/CSLSnUW5rqjH4NvaGDOJFDKd1qGLTpobEl7qL33vKKge8fUJNqp1oir+10W1CCA==}
+  /optional-default-site-kit/0.3.7:
+    resolution: {integrity: sha512-nGjU9UTa18PdS6g8p8Q1tYcJ/sGS6oEqmh+3Mf/DMIA/5CnL3HfAzuHgfTBmpcuFJrcaNcv3954UELdYXuFvew==}
     dev: false
 
   /parent-module/1.0.1:
