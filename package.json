@@ -1,6 +1,6 @@
 {
 	"name": "optional-default-google-maps",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "svelte-kit sync && svelte-package",
